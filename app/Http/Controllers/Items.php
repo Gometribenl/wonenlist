@@ -65,7 +65,11 @@ class Items extends Controller
      */
     public function edit($id)
     {
-        Item::edit($id);
+        $objItem = Item::find($id);
+        $objItem->status = $request->input('status');
+        $objItem->save();
+
+        return view('welcome');
     }
 
     /**
@@ -77,7 +81,11 @@ class Items extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $objItem = Item::find($id);
+        $objItem->status = $request->input('status');
+        $objItem->save();
+
+        return redirect('/');
     }
 
     /**

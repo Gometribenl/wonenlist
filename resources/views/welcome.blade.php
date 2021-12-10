@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Wonen Kay & Cathy</title>
 
         <!-- Fonts -->
@@ -21,26 +21,23 @@
                         <p>Hier zullen wij onze wensen en benodigedheden bijhouden.</p>
                     </div>
                     <div class="row">
-                    <form name="items" id="items" method="post" action="/items">
-                        <p>Heb je dit gekocht? Zo ja kies ja en druk op verstuur.</p>
                     @foreach($items as $item)
-                            <div class="col-md-4" style="margin-bottom: 1rem;">
-                                <div class="list-item-wonen">{{$item->listitem}}
-                                    <div class="form-group">
-                                        <label class="container-label" for="true">Ja
-                                            <input type="radio" id="true" name="status" value="1">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="container-label" for="html">Nee
-                                            <input checked="checked" type="radio" id="false" name="status" value="0">
-                                            <span class="checkmark"></span>
-                                        </label>
+                            @if($item->status == 1)
+                                <p>Al gekocht</p>
+                            @else
+                                <form name="items" id="items" method="POST" action="{{ route('items.update', ['item' => $item]) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <p>Heb je dit gekocht? Zo ja kies ja en druk op verstuur.</p>
+                                    <div class="col-md-4" style="margin-bottom: 1rem;">
+                                        <div class="list-item-wonen">{{$item->listitem}}
+                                            <input type="hidden" value="1" name="status">
+                                        <button type="submit" class="btn btn-primary">Ja!</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </form>
+                            @endif
                     @endforeach
-                        <button type="submit" class="btn btn-primary">Verstuur</button>
-                    </form>
                     </div>
                 </div>
             </div>
