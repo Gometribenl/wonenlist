@@ -39,6 +39,7 @@ class Items extends Controller
     {
         $objItem = new Item();
         $objItem->listitem = $request->input('listitem');
+        $objItem->url = $request->input('url');
         $objItem->status = $request->input('status');
         $objItem->save();
         return redirect('create')->with('status', 'Blog Post Form Data Has Been inserted');

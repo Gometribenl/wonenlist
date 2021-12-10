@@ -23,15 +23,20 @@
                     <div class="row">
                     @foreach($items as $item)
                             @if($item->status == 1)
-                                <p>Al gekocht</p>
+                                <div class="col-md-4" style="margin-bottom: 1rem;">
+                                    <div class="list-item-wonen">{{$item->listitem}}
+                                        <p>Dit product is gekocht!</p>
+                                    </div>
+                                </div>
                             @else
                                 <form name="items" id="items" method="POST" action="{{ route('items.update', ['item' => $item]) }}">
                                     @csrf
                                     @method('PUT')
-                                    <p>Heb je dit gekocht? Zo ja kies ja en druk op verstuur.</p>
                                     <div class="col-md-4" style="margin-bottom: 1rem;">
                                         <div class="list-item-wonen">{{$item->listitem}}
+                                            <p style="font-size: 16px;">Link:<a href="{{$item->url}}">{{$item->url}}</a></p>
                                             <input type="hidden" value="1" name="status">
+                                            <p style="font-size: 16px;">Wil jij dit kopen druk dan op ja!</p>
                                         <button type="submit" class="btn btn-primary">Ja!</button>
                                         </div>
                                     </div>

@@ -24,12 +24,10 @@
                             <input type="text" id="listitem" name="listitem" class="form-control" required="">
                         </div>
                         <div class="form-group">
-                            <p>Al bemachtiged?</p>
-                            <input type="radio" id="false" name="status" value="0">
-                            <label for="html">Nee</label><br>
-                            <input type="radio" id="true" name="status" value="1">
-                            <label for="true">Ja</label><br>
+                            <label for="url">Url</label>
+                            <input type="text" id="url" name="url" class="form-control">
                         </div>
+                        <input type="hidden" id="status" name="status" value="0">
                         <button type="submit" class="btn btn-primary">Verstuur</button>
                     </form>
                 </div>

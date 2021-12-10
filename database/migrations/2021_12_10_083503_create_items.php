@@ -16,6 +16,7 @@ class CreateItems extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('listitem');
+            $table->string('url')->nullable();;
             $table->boolean('status');
             $table->timestamps();
         });
